@@ -1,5 +1,26 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+  <div class="row">
+
     <h1>Hello Wilder !</h1>
+
+    {% for room in rooms %}
+
+      <div class="col-md-4">
+        <div class="card my-3">
+          <img class="card-img-top" src="assets/images/{{room.picture_url|replace({'salles/':''})}}" alt="Card image cap">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title">{{room.name}}</h5>
+              <span>{{room.price}}€ </span>
+            </div>
+            <p class="card-text">{{room.description|slice(0, 150)}}</p>
+            <p class="date">{{room.arrival_date}} au {{room.departure_date}}</p>
+            <a href="Room/show/{{room.id}}" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}

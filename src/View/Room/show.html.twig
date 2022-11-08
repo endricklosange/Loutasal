@@ -1,0 +1,73 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+  <div class="d-flex justify-content-between">
+    <h1 class="title">{{room.name}}</h1>
+    <button type="button" class="btn btn-primary">Primary</button>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <img src="/assets/images/{{room.picture_url|replace({'salles/':''})}}" alt="Card image cap">
+    </div>
+    <div class="col-md-4">
+      <h2>Description</h2>
+      <p>{{room.description}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <p>Arrivée :
+        {{room.arrival_date}}</p>
+      <p>Départ :
+        {{room.departure_date}}</p>
+    </div>
+    <div class="col-md-4">
+      <p>Capacité :
+        {{room.capacity}}</p>
+      <p>
+        Catégorie :
+        {{room.category}}</p>
+    </div>
+    <div class="col-md-4">
+      <p>{{room.address}}</p>
+      <p>Tarif :
+        {{room.price}}€
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <h3>Autres Produits à
+      {{room.city}}</h3>
+    {% for roomCity in roomsCity %}
+      <div class="col-md-3">
+        <a href="./{{roomCity.id}}" class="card my-3">
+          <img class="card-img-top" src="/assets/images/{{roomCity.picture_url|replace({'salles/':''})}}" alt="Card image cap">
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Utilisateur</th>
+        <th scope="col">Commentaires</th>
+        <th scope="col">Notes</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in feedback %}
+        <tr>
+          <td>{{data.username}}</td>
+          <td>{{data.comment}}</td>
+          <td>{{data.score}}</td>
+          <td>{{data.created_at}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

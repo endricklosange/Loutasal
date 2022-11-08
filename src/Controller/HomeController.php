@@ -9,6 +9,8 @@
 
 namespace App\Controller;
 
+use App\Model\RoomManager;
+
 class HomeController extends AbstractController
 {
     /**
@@ -21,6 +23,8 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig');
+        $roomManager = new RoomManager();
+        $rooms = $roomManager->selectAllRoom();
+        return $this->twig->render('Home/index.html.twig', ['rooms' => $rooms]);
     }
 }
