@@ -4,8 +4,8 @@
   <div class="row">
 
     {% for room in rooms %}
-
-      <div class="col-md-4">
+{% if room.arrival_date > currentDay %}
+  <div class="col-md-4">
         <div class="card my-3">
           <img class="card-img-top" src="assets/images/{{room.picture_url|replace({'salles/':''})}}" alt="Card image cap">
           <div class="card-body">
@@ -15,10 +15,11 @@
             </div>
             <p class="card-text">{{room.description|slice(0, 150)}}</p>
             <p class="date">{{room.arrival_date}} au {{room.departure_date}}</p>
-            <a href="Room/show/{{room.id}}" class="btn btn-primary">Go somewhere</a>
+            <a href="Room/show/{{room.id}}" class="btn btn-primary">Voir plus</a>
           </div>
         </div>
       </div>
+{% endif %}    
     {% endfor %}
   </div>
 {% endblock %}

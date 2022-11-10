@@ -9,14 +9,12 @@ class RoomManager extends AbstractManager
     /**
      * Insert new item in database
      */
-    public function selectAllRoom(string $orderBy = '', string $direction = 'ASC'): array
+    public function selectAllRoom(string $orderBy = 'price', string $direction = 'ASC'): array
     {
-        $query = 'SELECT room.*, slots.arrival_date,slots.departure_date,slots.price,slots.status  FROM ' .
-         static::TABLE . ' JOIN `slots` ORDER BY price';
+        $query = "SELECT * FROM `slots` INNER JOIN room ON slots.room_id =room.id;";
         if ($orderBy) {
             $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
         }
-
         return $this->pdo->query($query)->fetchAll();
     }
     public function show(int $id)

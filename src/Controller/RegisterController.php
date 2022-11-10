@@ -14,6 +14,7 @@ class RegisterController extends AbstractController
             $password = password_hash($data['password'], PASSWORD_DEFAULT);
             $userManager = new UserManager();
             $userManager->insert($email, $password);
+            header('Location:/');
         }
         return $this->twig->render('Register/index.html.twig');
     }

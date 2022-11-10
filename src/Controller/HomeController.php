@@ -25,6 +25,7 @@ class HomeController extends AbstractController
     {
         $roomManager = new RoomManager();
         $rooms = $roomManager->selectAllRoom();
-        return $this->twig->render('Home/index.html.twig', ['rooms' => $rooms]);
+        $currentDay = date('Y-m-d');
+        return $this->twig->render('Home/index.html.twig', ['rooms' => $rooms,'currentDay' => $currentDay]);
     }
 }
